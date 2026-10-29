@@ -1,5 +1,7 @@
 # Kotlin client: a nested list drops its items' nullability
 
+Reported in https://github.com/OpenAPITools/openapi-generator/issues/25471.
+
 A list of lists whose items `$ref` a nullable schema is generated without the `?` on the inner items. `column` (a list of `Note`) becomes `List<Note?>`, but `grid` (a list of lists of `Note`) becomes `List<List<Note>>`, so a `null` inside `grid` can't be decoded. The same happens when the items are an inline nullable `anyOf`, like a table cell that's a string, a number or `null`: the inline resolver turns it into a `$ref`.
 
 ## Reproduction
