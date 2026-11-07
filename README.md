@@ -2,6 +2,8 @@
 
 Reported in https://github.com/OpenAPITools/openapi-generator/issues/25471.
 
+Fixed in 7.27.0 by https://github.com/OpenAPITools/openapi-generator/pull/25493: with `"version": "7.27.0"` in [openapitools.json](openapitools.json), `npm run repro` prints the expected output below. The repository stays on 7.26.0 so it still shows the bug.
+
 A list of lists whose items `$ref` a nullable schema is generated without the `?` on the inner items. `column` (a list of `Note`) becomes `List<Note?>`, but `grid` (a list of lists of `Note`) becomes `List<List<Note>>`, so a `null` inside `grid` can't be decoded. The same happens when the items are an inline nullable `anyOf`, like a table cell that's a string, a number or `null`: the inline resolver turns it into a `$ref`.
 
 ## Reproduction
